@@ -17,16 +17,41 @@ const ToDo = () => {
     },
   ];
 
+  const deleteAllTasks = () => {
+    console.log("Delete all tasks");
+  };
+
+  const deleteTask = (taskId) => {
+    console.log(`Delete task: ${taskId}`);
+  };
+
+  const toggleTaskComplete = (taskId, isDone) => {
+    console.log(`Task ${taskId} ${isDone ? "completed" : "is not completed"}`);
+  };
+
+  const filterTasks = (query) => {
+    console.log(`Search: ${query}`);
+  };
+
+  const addTask = () => {
+    console.log("Task added");
+  };
+
   return (
     <div className="todo">
       <h1 className="todo__title">To Do List</h1>
-      <AddTaskForm />
-      <SearchTaskForm />
+      <AddTaskForm addTask={addTask} />
+      <SearchTaskForm onSearchInput={filterTasks} />
       <ToDoInfo
         total={tasks.length}
-        done={tasks.filter(({isDone}) => isDone).length}
+        done={tasks.filter(({ isDone }) => isDone).length}
+        onDeleteAllButtonClick={deleteAllTasks}
       />
-      <ToDoList tasks={tasks} />
+      <ToDoList
+        tasks={tasks}
+        onDeleteTaskButtonClick={deleteTask}
+        onTaskCompleteChange={toggleTaskComplete}
+      />
     </div>
   );
 };
