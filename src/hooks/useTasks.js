@@ -61,7 +61,7 @@ const useTasks = () => {
   }, [newTaskTitle]);
 
   useEffect(() => {
-    saveTasks(savedTasks)
+    saveTasks(tasks)
   }, [tasks]);
 
   useEffect(() => {
